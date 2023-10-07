@@ -1,0 +1,23 @@
+{
+    "name": "cli",
+    "version": "1.0.0",
+    "description": "cli tools",
+    "main": "build/index.js",
+    "scripts": {
+        "test": "ts-node src/index.ts generate user -m"
+    },
+    "keywords": [
+        "cli-tools"
+    ],
+    "author": "Kasra Karami <Kasra.Karami.KK@gmail.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^20.8.3",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.2.2"
+    },
+    "dependencies": {
+        "case-anything": "^2.1.13",
+        "commander": "^11.0.0"
+    }
+}
