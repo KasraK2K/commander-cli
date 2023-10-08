@@ -12,13 +12,16 @@ program
     .name('Generate')
     .description('Generate command help to create file')
     .command('generate')
-    .option('-c, --controller', 'Create controller file.')
-    .option('-s, --service', 'Create service file.')
-    .option('-r, --repository', 'Create repository file.')
-    .option('-m, --module', 'Create all files.')
-    .argument('name', 'Name for file eq: user -> User<Controller, Service, Repository>')
-    .action((name: string, options: IOptions) => {
-        name = `${caseAnything.pascalCase(name)}Controller`
+    .option('--routes', 'Create route file.')
+    .option('--controller', 'Create controller file.')
+    .option('--schema', 'Create schema file.')
+    .option('--service', 'Create service file.')
+    .option('--repository', 'Create repository file.')
+    .option('--module', 'Create all files.')
+    .option('--rest', 'Create rest client files.')
+    .argument('moduleName', 'Name for file eq: user -> User<Controller, Service, Repository>')
+    .action((moduleName: string, options: IOptions) => {
+        moduleName = `${caseAnything.pascalCase(moduleName)}Controller`
 
         // TODO : Check module existence
 
@@ -27,15 +30,17 @@ program
             Object.assign(options, { controller: true, service: true, repository: true })
             for (const key of Object.keys(options)) {
                 // TODO : Create module with all files
+                console.log(1, { key })
             }
         } else {
             for (const key of Object.keys(options)) {
                 // TODO : Create controller (and/or) service (and/or) repository from key
-                // I have to create a function that give `name` and `key` and depends on key i have to create file(s) (controller, service, repository)
+                // I have to create a function that give `moduleName` and `key` and depends on key i have to create file(s) (controller, service, repository)
+                console.log(2, { key })
             }
         }
 
-        console.log({ name, options })
+        console.log({ moduleName, options })
     })
 /* -------------------------------------------------------------------------- */
 
