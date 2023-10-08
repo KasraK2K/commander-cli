@@ -1,10 +1,10 @@
 /* ------------------------------ Dependencies ------------------------------ */
-import caseAnything from 'case-anything'
+import changeCase from 'change-case-all'
 /* -------------------------------------------------------------------------- */
 
 export const serviceTextGenerator = (moduleName: string): string => {
-    const pascalCase = caseAnything.pascalCase(moduleName)
-    const camelCase = caseAnything.camelCase(moduleName)
+    const pascalCase = changeCase.pascalCase(moduleName)
+    const camelCase = changeCase.camelCase(moduleName)
 
     return `
         /* ----------------------------- Custom Modules ----------------------------- */

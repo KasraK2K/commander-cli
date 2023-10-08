@@ -1,6 +1,6 @@
 /* ------------------------------ Dependencies ------------------------------ */
 import { Command } from 'commander'
-import caseAnything from 'case-anything'
+import changeCase from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */
 import { IOptions } from './libraries/interface'
 /* -------------------------------- Constants ------------------------------- */
@@ -17,11 +17,11 @@ program
     .option('--schema', 'Create schema file.')
     .option('--service', 'Create service file.')
     .option('--repository', 'Create repository file.')
-    .option('--module', 'Create all files.')
     .option('--rest', 'Create rest client files.')
+    .option('--module', 'Create all files.')
     .argument('moduleName', 'Name for file eq: user -> User<Controller, Service, Repository>')
     .action((moduleName: string, options: IOptions) => {
-        moduleName = `${caseAnything.pascalCase(moduleName)}Controller`
+        moduleName = `${changeCase.pascalCase(moduleName)}Controller`
 
         // TODO : Check module existence
 
