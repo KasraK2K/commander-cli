@@ -3,8 +3,8 @@ import { pascalCase, camelCase } from 'change-case-all'
 /* -------------------------------------------------------------------------- */
 
 export const controllerTextGenerator = (moduleName: string): string => {
-    pascalCase(moduleName)
-    camelCase(moduleName)
+    const modulePascalCase = pascalCase(moduleName)
+    const moduleCamelCase = camelCase(moduleName)
 
     return `
         /* ------------------------------ Dependencies ------------------------------ */
@@ -12,16 +12,16 @@ export const controllerTextGenerator = (moduleName: string): string => {
         /* ----------------------------- Custom Modules ----------------------------- */
         import Controller from '../../base/Controller'
         import { BindInstance, Cache, Role } from '../../common/decorators'
-        import ${camelCase}Service from './${camelCase}.service'
+        import ${moduleCamelCase}Service from './${moduleCamelCase}.service'
         /* -------------------------------------------------------------------------- */
         
         @BindInstance
-        class ${pascalCase}Controller extends Controller {
+        class ${modulePascalCase}Controller extends Controller {
             async healthCheck(req: Request, res: Response) {
-                await super.handle(${camelCase}Service.healthCheck, undefined, req, res)
+                await super.handle(${moduleCamelCase}Service.healthCheck, undefined, req, res)
             }
         }
         
-        export default new ${pascalCase}Controller()
+        export default new ${modulePascalCase}Controller()
     `
 }

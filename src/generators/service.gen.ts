@@ -3,22 +3,22 @@ import { pascalCase, camelCase } from 'change-case-all'
 /* -------------------------------------------------------------------------- */
 
 export const serviceTextGenerator = (moduleName: string): string => {
-    pascalCase(moduleName)
-    camelCase(moduleName)
+    const modulePascalCase = pascalCase(moduleName)
+    const moduleCamelCase = camelCase(moduleName)
 
     return `
         /* ----------------------------- Custom Modules ----------------------------- */
-        import ${camelCase}Repository from './${camelCase}.repository'
+        import ${moduleCamelCase}Repository from './${moduleCamelCase}.repository'
         /* -------------------------------------------------------------------------- */
         
-        class ${pascalCase}Service {
+        class ${modulePascalCase}Service {
             healthCheck() {
                 return new Promise((resolve, reject) => {
-                    ${camelCase}Repository.healthCheck().then(resolve).catch(reject)
+                    ${moduleCamelCase}Repository.healthCheck().then(resolve).catch(reject)
                 })
             }
         }
         
-        export default new ${pascalCase}Service()
+        export default new ${modulePascalCase}Service()
     `
 }

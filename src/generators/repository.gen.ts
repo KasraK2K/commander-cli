@@ -3,19 +3,19 @@ import { pascalCase, camelCase } from 'change-case-all'
 /* -------------------------------------------------------------------------- */
 
 export const repositoryTextGenerator = (moduleName: string): string => {
-    pascalCase(moduleName)
-    camelCase(moduleName)
+    const modulePascalCase = pascalCase(moduleName)
+    const moduleCamelCase = camelCase(moduleName)
 
     return `
         /* ----------------------------- Custom Modules ----------------------------- */
         import { postgresPool } from '../../bootstrap'
-        import ${camelCase}Queries from './${camelCase}.query'
+        import ${moduleCamelCase}Queries from './${moduleCamelCase}.query'
         /* -------------------------------------------------------------------------- */
         
-        class ${pascalCase}Repository {
+        class ${modulePascalCase}Repository {
             public healthCheck() {
                 return new Promise((resolve, reject) => {
-                    const query = ${camelCase}Queries.pingDatabase()
+                    const query = ${moduleCamelCase}Queries.pingDatabase()
                     postgresPool.pool
                         .query(query)
                         .then(() => resolve('Everything Works Fine'))
@@ -24,7 +24,7 @@ export const repositoryTextGenerator = (moduleName: string): string => {
             }
         }
         
-        export default new ${pascalCase}Repository()
+        export default new ${modulePascalCase}Repository()
     `
 }
 
