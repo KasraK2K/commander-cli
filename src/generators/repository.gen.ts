@@ -1,10 +1,10 @@
 /* ------------------------------ Dependencies ------------------------------ */
-import changeCase from 'change-case-all'
+import { pascalCase, camelCase } from 'change-case-all'
 /* -------------------------------------------------------------------------- */
 
 export const repositoryTextGenerator = (moduleName: string): string => {
-    const pascalCase = changeCase.pascalCase(moduleName)
-    const camelCase = changeCase.camelCase(moduleName)
+    pascalCase(moduleName)
+    camelCase(moduleName)
 
     return `
         /* ----------------------------- Custom Modules ----------------------------- */

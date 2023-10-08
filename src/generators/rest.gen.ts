@@ -1,9 +1,9 @@
 /* ------------------------------ Dependencies ------------------------------ */
-import changeCase from 'change-case-all'
+import { pascalCase, camelCase } from 'change-case-all'
 /* -------------------------------------------------------------------------- */
 
 export const restClientTextGenerator = (moduleName: string): string => {
-    const camelCase = changeCase.camelCase(moduleName)
+    camelCase(moduleName)
 
     return `
         @module={{host}}/${camelCase}

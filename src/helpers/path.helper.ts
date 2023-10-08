@@ -1,12 +1,12 @@
 /* ------------------------------ Node Modules ------------------------------ */
 import path from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
-import changeCase from 'change-case-all'
+import { pascalCase, camelCase } from 'change-case-all'
 import { FileNames } from '../libraries/enums'
 /* -------------------------------------------------------------------------- */
 
 export const getFilePath = (moduleName: string, fileName: FileNames): string => {
-    const pascalCase = changeCase.pascalCase(moduleName)
+    pascalCase(moduleName)
 
     const finalPath =
         fileName === 'schema'

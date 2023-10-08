@@ -1,8 +1,9 @@
 /* ------------------------------ Dependencies ------------------------------ */
 import { Command } from 'commander'
-import changeCase from 'change-case-all'
+import { pascalCase, camelCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */
 import { IOptions } from './libraries/interface'
+import { createModuleFolder } from './helpers'
 /* -------------------------------- Constants ------------------------------- */
 const program = new Command()
 /* -------------------------------------------------------------------------- */
@@ -21,7 +22,7 @@ program
     .option('--module', 'Create all files.')
     .argument('moduleName', 'Name for file eq: user -> User<Controller, Service, Repository>')
     .action((moduleName: string, options: IOptions) => {
-        moduleName = `${changeCase.pascalCase(moduleName)}Controller`
+        moduleName = `${pascalCase(moduleName)}Controller`
 
         // TODO : Check module existence
 
@@ -47,3 +48,5 @@ program
 program.parse()
 // const options = program.opts()
 // console.log({ options })
+
+createModuleFolder('kara')
