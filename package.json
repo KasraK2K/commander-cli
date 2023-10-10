@@ -1,12 +1,14 @@
 {
     "name": "kasra-apppair-cli",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "cli tools",
     "main": "build/index.js",
     "scripts": {
         "format": "prettier --write .",
-        "build": "tsc",
-        "test": "ts-node src/index.ts generate user --rest"
+        "prebuild": "rimraf build",
+        "build": "npm run prebuild && tsc",
+        "test-command": "ts-node src/index.ts generate user --rest",
+        "prepublish": "npm run build"
     },
     "keywords": [
         "CLI",
@@ -23,7 +25,8 @@
     "dependencies": {
         "chalk": "^4.1.2",
         "change-case-all": "^1.0.15",
-        "commander": "^11.0.0"
+        "commander": "^11.0.0",
+        "rimraf": "^5.0.5"
     },
     "bin": {
         "kasra-apppair-cli": "build/src/index.js"
