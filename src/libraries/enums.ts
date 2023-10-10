@@ -4,6 +4,15 @@ export enum FileNames {
     SCHEMA = 'schema',
     SERVICE = 'service',
     REPOSITORY = 'repository',
+    QUERY = 'query',
     MODULE = 'module',
-    REST = 'rest'
+    REST = 'rest',
+}
+
+export enum LogTypes {
+    VERBOSE,
+    SUCCESS,
+    WARNING,
+    DEBUG,
+    ERROR,
 }
