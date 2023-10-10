@@ -1,6 +1,6 @@
 {
     "name": "kasra-apppair-cli",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "description": "cli tools",
     "main": "build/src/index.js",
     "publishConfig": {
@@ -17,7 +17,8 @@
         "prepublish:npm": "npm run build",
         "publish:npm": "npm publish --access public",
         "prerelease": "npm run build",
-        "release": "release-it"
+        "release": "release-it",
+        "executable": "chmod +x build/src/index.js"
     },
     "keywords": [
         "CLI",
