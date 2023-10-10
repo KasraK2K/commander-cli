@@ -1,24 +1,22 @@
 {
     "name": "kasra-apppair-cli",
-    "version": "0.0.22",
+    "version": "0.0.23",
     "description": "cli tools",
-    "main": "build/index.js",
+    "main": "bin/index.js",
     "publishConfig": {
         "access": "public"
     },
     "scripts": {
         "format": "prettier --write .",
-        "prebuild": "rimraf index.js",
         "build": "tsc",
-        "test-command": "ts-node src/index.ts generate user --rest",
+        "test-command": "ts-node bin/index.ts generate user --rest",
         "prepack": "npm run build",
         "prepublish:next": "npm run build",
         "publish:next": "npm publish --access public --tag next",
         "prepublish:npm": "npm run build",
         "publish:npm": "npm publish --access public",
         "prerelease": "npm run build",
-        "release": "release-it",
-        "executable": "chmod +x build/src/index.js"
+        "release": "release-it"
     },
     "keywords": [
         "CLI",
@@ -45,6 +43,6 @@
         "rimraf": "^5.0.5"
     },
     "bin": {
-        "kasra-apppair-cli": "build/index.js"
+        "kasra-apppair-cli": "bin/index.js"
     }
 }

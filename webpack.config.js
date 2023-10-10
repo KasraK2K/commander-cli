@@ -1,3 +1,5 @@
+/* ------------------------------ Node Modules ------------------------------ */
+const path = require('node:path')
 /* ------------------------------ Dependencies ------------------------------ */
 const nodeExternals = require('webpack-node-externals')
 const WebpackShellPluginNext = require('webpack-shell-plugin-next')
@@ -13,7 +15,7 @@ module.exports = {
     watch: false,
     externals: [nodeExternals()],
     output: {
-        path: process.cwd(),
+        path: path.resolve(process.cwd(), 'bin'),
         filename: 'index.js',
     },
     resolve: { extensions: ['.ts', '.json'] },

@@ -1,7 +1,7 @@
 /* ------------------------------ Dependencies ------------------------------ */
 import { Command } from 'commander'
 /* ----------------------------- Custom Modules ----------------------------- */
-import { IOptions } from './libraries'
+import { IOptions } from '../src/libraries'
 import {
     createController,
     createModule,
@@ -10,8 +10,8 @@ import {
     createRoutes,
     createSchema,
     createService,
-} from './generators'
-import { checkFolderExistence, createModuleFolder } from './helpers'
+} from '../src/generators'
+import { checkFolderExistence, createModuleFolder } from '../src/helpers'
 /* -------------------------------- Constants ------------------------------- */
 const program = new Command()
 /* -------------------------------------------------------------------------- */
