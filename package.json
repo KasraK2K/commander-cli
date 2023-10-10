@@ -1,6 +1,6 @@
 {
-    "name": "kasra-cli",
-    "version": "0.0.1",
+    "name": "kasra-apppair-cli",
+    "version": "0.0.2",
     "description": "cli tools",
     "main": "build/index.js",
     "scripts": {
@@ -26,6 +26,6 @@
         "commander": "^11.0.0"
     },
     "bin": {
-        "kasra-cli": "build/index.js"
+        "kasra-apppair-cli": "build/src/index.js"
     }
 }
