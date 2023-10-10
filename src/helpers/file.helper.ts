@@ -1,6 +1,6 @@
 /* ------------------------------ Dependencies ------------------------------ */
-import * as fs from 'node:fs'
-import * as path from 'node:path'
+import fs from 'node:fs'
+import path from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import { pascalCase, camelCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */

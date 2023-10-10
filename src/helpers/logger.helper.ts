@@ -1,5 +1,6 @@
 /* ------------------------------ Dependencies ------------------------------ */
-import * as chalk from 'chalk'
+import chalk from 'chalk'
+import winston from 'winston'
 /* ----------------------------- Custom Modules ----------------------------- */
 import { LogTypes } from '../libraries'
 /* -------------------------------------------------------------------------- */
@@ -14,5 +15,10 @@ export const logger = (message: string, type: LogTypes): void => {
         [LogTypes.LOVE]: chalk.hex('#f6009b'),
     }
 
-    console.log(logMode[type](message))
+    const winstonLog = winston.createLogger({
+        format: winston.format.simple(),
+        transports: [new winston.transports.Console()],
+    })
+
+    winstonLog.info(logMode[type](message))
 }
