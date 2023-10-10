@@ -4,7 +4,8 @@
     "description": "cli tools",
     "main": "build/index.js",
     "scripts": {
-        "test": "ts-node src/index.ts generate user --module"
+        "format": "prettier --write .",
+        "test": "ts-node src/index.ts generate user --rest"
     },
     "keywords": [
         "cli-tools"
@@ -17,6 +18,7 @@
         "typescript": "^5.2.2"
     },
     "dependencies": {
+        "chalk": "^4.1.2",
         "change-case-all": "^1.0.15",
         "commander": "^11.0.0"
     }
