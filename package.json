@@ -1,6 +1,6 @@
 {
     "name": "kasra-apppair-cli",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "description": "cli tools",
     "main": "build/src/index.js",
     "publishConfig": {
