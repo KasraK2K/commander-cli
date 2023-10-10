@@ -3,7 +3,7 @@
 /* ------------------------------ Dependencies ------------------------------ */
 import { Command } from 'commander'
 /* ----------------------------- Custom Modules ----------------------------- */
-import { IOptions } from '../src/libraries'
+import { IOptions } from './libraries'
 import {
     createController,
     createModule,
@@ -12,8 +12,8 @@ import {
     createRoutes,
     createSchema,
     createService,
-} from '../src/generators'
-import { checkFolderExistence, createModuleFolder } from '../src/helpers'
+} from './generators'
+import { checkFolderExistence, createModuleFolder } from './helpers'
 /* -------------------------------- Constants ------------------------------- */
 const program = new Command()
 /* -------------------------------------------------------------------------- */
