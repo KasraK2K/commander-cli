@@ -1,11 +1,23 @@
 {
     "name": "kasra-apppair-cli",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "cli tools",
-    "main": "build/index.js",
+    "main": "build/src/index.js",
+    "publishConfig": {
+        "access": "public"
+    },
     "scripts": {
         "format": "prettier --write .",
-        "test-command": "ts-node src/index.ts generate user --rest"
+        "prebuild": "rimraf build",
+        "build": "webpack -- --color",
+        "test-command": "ts-node src/index.ts generate user --rest",
+        "prepack": "npm run build",
+        "prepublish:next": "npm run build",
+        "publish:next": "npm publish --access public --tag next",
+        "prepublish:npm": "npm run build",
+        "publish:npm": "npm publish --access public",
+        "prerelease": "npm run build",
+        "release": "release-it"
     },
     "keywords": [
         "CLI",
@@ -13,11 +25,17 @@
         "Kasra-CLI"
     ],
     "author": "Kasra Karami <Kasra.Karami.KK@gmail.com>",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
         "@types/node": "^20.8.3",
+        "terser-webpack-plugin": "^5.3.9",
+        "ts-loader": "^9.5.0",
         "ts-node": "^10.9.1",
-        "typescript": "^5.2.2"
+        "typescript": "^5.2.2",
+        "webpack": "^5.88.2",
+        "webpack-cli": "^5.1.4",
+        "webpack-node-externals": "^3.0.0",
+        "webpack-shell-plugin-next": "^2.3.1"
     },
     "dependencies": {
         "chalk": "^4.1.2",
@@ -26,6 +44,6 @@
         "rimraf": "^5.0.5"
     },
     "bin": {
-        "kasra-apppair-cli": "node -r ts-node/register src/index.ts"
+        "kasra-apppair-cli": "build/src/index.js"
     }
 }
