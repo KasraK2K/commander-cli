@@ -1,9 +1,17 @@
 /* ------------------------------ Dependencies ------------------------------ */
 import { Command } from 'commander'
-import { pascalCase, camelCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */
-import { IOptions } from './libraries/interface'
-import { createModuleFolder } from './helpers'
+import { IOptions } from './libraries'
+import {
+    createController,
+    createModule,
+    createRepository,
+    createRestClient,
+    createRoutes,
+    createSchema,
+    createService,
+} from './generators'
+import { checkFolderExistence, createModuleFolder } from './helpers'
 /* -------------------------------- Constants ------------------------------- */
 const program = new Command()
 /* -------------------------------------------------------------------------- */
@@ -11,42 +19,38 @@ const program = new Command()
 /* --------------------------- Generate Controller -------------------------- */
 program
     .name('Generate')
-    .description('Generate command help to create file')
+    .description('Generate command help to create file.')
     .command('generate')
     .option('--routes', 'Create route file.')
-    .option('--controller', 'Create controller file.')
+    .option('-c, --controller', 'Create controller file.')
     .option('--schema', 'Create schema file.')
-    .option('--service', 'Create service file.')
-    .option('--repository', 'Create repository file.')
+    .option('-s, --service', 'Create service file.')
+    .option('-r, --repository', 'Create repository file.')
     .option('--rest', 'Create rest client files.')
-    .option('--module', 'Create all files.')
+    .option('-m, --module', 'Create all files.')
     .argument('moduleName', 'Name for file eq: user -> User<Controller, Service, Repository>')
     .action((moduleName: string, options: IOptions) => {
-        moduleName = `${pascalCase(moduleName)}Controller`
+        // Check module folder existence and create it if not exist
+        const isFolderExist = checkFolderExistence(moduleName)
+        if (!isFolderExist) createModuleFolder(moduleName)
 
-        // TODO : Check module existence
-
-        // Add arguments into program.opts()
-        if (options.module) {
-            Object.assign(options, { controller: true, service: true, repository: true })
-            for (const key of Object.keys(options)) {
-                // TODO : Create module with all files
-                console.log(1, { key })
+        if (options.module) createModule(moduleName)
+        else {
+            const fileCreator: Record<string, (moduleName: string) => boolean> = {
+                routes: createRoutes,
+                controller: createController,
+                schema: createSchema,
+                service: createService,
+                repository: createRepository,
+                rest: createRestClient,
             }
-        } else {
-            for (const key of Object.keys(options)) {
-                // TODO : Create controller (and/or) service (and/or) repository from key
-                // I have to create a function that give `moduleName` and `key` and depends on key i have to create file(s) (controller, service, repository)
-                console.log(2, { key })
+            // Convert option names to lowercase
+            const lowercaseOptions = Object.keys(options).map((opt) => opt.toLowerCase())
+            for (const opt of lowercaseOptions) {
+                fileCreator[opt](moduleName)
             }
         }
-
-        console.log({ moduleName, options })
     })
 /* -------------------------------------------------------------------------- */
 
 program.parse()
-// const options = program.opts()
-// console.log({ options })
-
-createModuleFolder('kara')
