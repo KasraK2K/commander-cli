@@ -3,8 +3,8 @@ import fs from 'node:fs'
 /* ------------------------------ Dependencies ------------------------------ */
 import { camelCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */
-import { getFilePath } from '../helpers'
-import { FileNames } from '../libraries'
+import { getFileName, getFilePath, logger } from '../helpers'
+import { FileNames, LogTypes } from '../libraries'
 /* -------------------------------------------------------------------------- */
 
 export const restClientTextGenerator = (moduleName: string): string => {
@@ -26,6 +26,7 @@ export const createRestClient = (moduleName: string): boolean => {
     const filePath = getFilePath(moduleName, FileNames.REST)
     try {
         fs.writeFileSync(filePath, restText)
+        logger(`${getFileName(moduleName, FileNames.REST)}\t\tis created`, LogTypes.SUCCESS)
         return true
     } catch {
         return false

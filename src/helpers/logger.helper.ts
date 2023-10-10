@@ -11,6 +11,7 @@ export const logger = (message: string, type: LogTypes): void => {
         [LogTypes.WARNING]: chalk.rgb(255, 255, 0),
         [LogTypes.DEBUG]: chalk.rgb(0, 0, 255),
         [LogTypes.ERROR]: chalk.red,
+        [LogTypes.LOVE]: chalk.hex('#f6009b'),
     }
 
     console.log(logMode[type](message))

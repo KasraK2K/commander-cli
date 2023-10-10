@@ -3,8 +3,8 @@ import fs from 'node:fs'
 /* ------------------------------ Dependencies ------------------------------ */
 import { pascalCase, camelCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */
-import { getFilePath } from '../helpers'
-import { FileNames } from '../libraries'
+import { getFileName, getFilePath, logger } from '../helpers'
+import { FileNames, LogTypes } from '../libraries'
 /* -------------------------------------------------------------------------- */
 
 export const controllerTextGenerator = (moduleName: string): string => {
@@ -36,6 +36,7 @@ export const createController = (moduleName: string): boolean => {
     const filePath = getFilePath(moduleName, FileNames.CONTROLLER)
     try {
         fs.writeFileSync(filePath, controllerText)
+        logger(`${getFileName(moduleName, FileNames.CONTROLLER)}\tis created`, LogTypes.SUCCESS)
         return true
     } catch {
         return false

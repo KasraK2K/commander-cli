@@ -3,8 +3,8 @@ import fs from 'node:fs'
 /* ------------------------------ Dependencies ------------------------------ */
 import { pascalCase, camelCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */
-import { getFilePath } from '../helpers'
-import { FileNames } from '../libraries'
+import { getFileName, getFilePath, logger } from '../helpers'
+import { FileNames, LogTypes } from '../libraries'
 /* -------------------------------------------------------------------------- */
 
 export const repositoryTextGenerator = (moduleName: string): string => {
@@ -51,7 +51,9 @@ export const createRepository = (moduleName: string): boolean => {
     const queryFilePath = getFilePath(moduleName, FileNames.QUERY)
     try {
         fs.writeFileSync(repositoryFilePath, repositoryText)
+        logger(`${getFileName(moduleName, FileNames.REPOSITORY)}\tis created`, LogTypes.SUCCESS)
         fs.writeFileSync(queryFilePath, queryText)
+        logger(`${getFileName(moduleName, FileNames.QUERY)}\t\tis created`, LogTypes.SUCCESS)
         return true
     } catch {
         return false

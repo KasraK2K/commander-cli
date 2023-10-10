@@ -15,4 +15,5 @@ export enum LogTypes {
     WARNING,
     DEBUG,
     ERROR,
+    LOVE,
 }

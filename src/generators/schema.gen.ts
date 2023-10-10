@@ -4,8 +4,8 @@ import path from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import { pascalCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */
-import { getFilePath } from '../helpers'
-import { FileNames } from '../libraries'
+import { getFileName, getFilePath, logger } from '../helpers'
+import { FileNames, LogTypes } from '../libraries'
 /* -------------------------------------------------------------------------- */
 
 export const schemaTextGenerator = (): string => {
@@ -56,6 +56,7 @@ export const createSchema = (moduleName: string): boolean => {
     )
     try {
         fs.mkdirSync(validationFolder, { recursive: true })
+        logger(`${getFileName(moduleName, FileNames.SCHEMA)}\tis created`, LogTypes.SUCCESS)
         fs.writeFileSync(filePath, schemaText)
         return true
     } catch (error) {
