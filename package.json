@@ -1,6 +1,6 @@
 {
     "name": "kasra-apppair-cli",
-    "version": "0.0.13",
+    "version": "0.0.14",
     "description": "cli tools",
     "main": "build/src/index.js",
     "publishConfig": {
@@ -9,7 +9,7 @@
     "scripts": {
         "format": "prettier --write .",
         "prebuild": "rimraf build",
-        "build": "webpack -- --color",
+        "build": "tsc",
         "test-command": "ts-node src/index.ts generate user --rest",
         "prepack": "npm run build",
         "prepublish:next": "npm run build",
