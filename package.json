@@ -5,6 +5,7 @@
     "main": "build/index.js",
     "scripts": {
         "format": "prettier --write .",
+        "build": "tsc",
         "test": "ts-node src/index.ts generate user --rest"
     },
     "keywords": [
@@ -25,6 +26,6 @@
         "commander": "^11.0.0"
     },
     "bin": {
-        "kasra-cli": "index.js"
+        "kasra-cli": "build/index.js"
     }
 }
