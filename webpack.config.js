@@ -31,5 +31,5 @@ module.exports = {
             onAfterDone: { scripts: ['echo "Build complete!"'] },
         }),
     ],
-    optimization: { minimize: true, minimizer: [new TerserPlugin()] },
+    optimization: { minimize: false, minimizer: [new TerserPlugin()] },
 }
