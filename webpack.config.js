@@ -16,7 +16,7 @@ module.exports = {
         path: process.cwd(),
         filename: 'index.js',
     },
-    resolve: { extensions: ['.ts', '.js', '.json'] },
+    resolve: { extensions: ['.ts', '.json'] },
     module: { rules: [{ test: /\.ts$/, use: ['ts-loader'] }] },
     plugins: [new WebpackShellPluginNext({ onAfterDone: { scripts: ["echo 'Build complete!'"] } })],
     optimization: { minimize: false, minimizer: [new TerserPlugin()] },
