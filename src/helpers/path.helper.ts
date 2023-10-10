@@ -1,5 +1,5 @@
 /* ------------------------------ Node Modules ------------------------------ */
-import path from 'node:path'
+import * as path from 'node:path'
 /* ------------------------------ Dependencies ------------------------------ */
 import { pascalCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */

@@ -1,5 +1,5 @@
 /* ---------------------------- Node Dependencies --------------------------- */
-import fs from 'node:fs'
+import * as fs from 'node:fs'
 /* ------------------------------ Dependencies ------------------------------ */
 import { camelCase } from 'change-case-all'
 /* ----------------------------- Custom Modules ----------------------------- */
