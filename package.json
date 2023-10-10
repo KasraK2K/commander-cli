@@ -1,6 +1,6 @@
 {
     "name": "cli",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "cli tools",
     "main": "build/index.js",
     "scripts": {
@@ -13,7 +13,7 @@
         "Kasra-CLI"
     ],
     "author": "Kasra Karami <Kasra.Karami.KK@gmail.com>",
-    "license": "MIT",
+    "license": "ISC",
     "devDependencies": {
         "@types/node": "^20.8.3",
         "ts-node": "^10.9.1",
