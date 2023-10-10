@@ -1,15 +1,15 @@
 {
     "name": "kasra-apppair-cli",
-    "version": "0.0.18",
+    "version": "0.0.19",
     "description": "cli tools",
-    "main": "index.js",
+    "main": "build/index.js",
     "publishConfig": {
         "access": "public"
     },
     "scripts": {
         "format": "prettier --write .",
         "prebuild": "rimraf index.js",
-        "build": "webpack -- --color",
+        "build": "tsc",
         "test-command": "ts-node src/index.ts generate user --rest",
         "prepack": "npm run build",
         "prepublish:next": "npm run build",
@@ -45,6 +45,6 @@
         "rimraf": "^5.0.5"
     },
     "bin": {
-        "kasra-apppair-cli": "index.js"
+        "kasra-apppair-cli": "build/index.js"
     }
 }
