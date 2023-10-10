@@ -1,6 +1,9 @@
 export interface IOptions {
-    controller: boolean
-    service: boolean
-    repository: boolean
-    module: boolean
+    routes?: boolean
+    controller?: boolean
+    schema?: boolean
+    service?: boolean
+    repository?: boolean
+    rest?: boolean
+    module?: boolean
 }
