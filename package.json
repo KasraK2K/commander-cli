@@ -1,6 +1,6 @@
 {
     "name": "kasra-apppair-cli",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "cli tools",
     "main": "build/src/index.js",
     "publishConfig": {
@@ -43,8 +43,5 @@
         "change-case-all": "^1.0.15",
         "commander": "^11.0.0",
         "rimraf": "^5.0.5"
-    },
-    "bin": {
-        "kasra-apppair-cli": "node build/src/index.js"
     }
 }
