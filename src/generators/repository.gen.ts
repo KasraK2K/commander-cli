@@ -1,5 +1,10 @@
+/* ---------------------------- Node Dependencies --------------------------- */
+import fs from 'node:fs'
 /* ------------------------------ Dependencies ------------------------------ */
 import { pascalCase, camelCase } from 'change-case-all'
+/* ----------------------------- Custom Modules ----------------------------- */
+import { getFilePath } from '../helpers'
+import { FileNames } from '../libraries'
 /* -------------------------------------------------------------------------- */
 
 export const repositoryTextGenerator = (moduleName: string): string => {
@@ -7,33 +12,48 @@ export const repositoryTextGenerator = (moduleName: string): string => {
     const moduleCamelCase = camelCase(moduleName)
 
     return `
-        /* ----------------------------- Custom Modules ----------------------------- */
-        import { postgresPool } from '../../bootstrap'
-        import ${moduleCamelCase}Queries from './${moduleCamelCase}.query'
-        /* -------------------------------------------------------------------------- */
+/* ----------------------------- Custom Modules ----------------------------- */
+import { postgresPool } from '../../bootstrap'
+import ${moduleCamelCase}Queries from './${moduleCamelCase}.query'
+/* -------------------------------------------------------------------------- */
+
+class ${modulePascalCase}Repository {
+    public healthCheck() {
+        return new Promise((resolve, reject) => {
+            const query = ${moduleCamelCase}Queries.pingDatabase()
+            postgresPool.pool
+                .query(query)
+                .then(() => resolve('Everything Works Fine'))
+                .catch(() => reject('Error on connecting database'))
+        })
+    }
+}
         
-        class ${modulePascalCase}Repository {
-            public healthCheck() {
-                return new Promise((resolve, reject) => {
-                    const query = ${moduleCamelCase}Queries.pingDatabase()
-                    postgresPool.pool
-                        .query(query)
-                        .then(() => resolve('Everything Works Fine'))
-                        .catch(() => reject('Error on connecting database'))
-                })
-            }
-        }
-        
-        export default new ${modulePascalCase}Repository()
+export default new ${modulePascalCase}Repository()
     `
 }
 
 export const queryTextGenerator = (): string => {
     return `
-        /* ------------------------------ Dependencies ------------------------------ */
-        import SqlString from 'sqlstring'
-        /* -------------------------------------------------------------------------- */
+/* ------------------------------ Dependencies ------------------------------ */
+import SqlString from 'sqlstring'
+/* -------------------------------------------------------------------------- */
 
-        export const pingDatabase = () => 'SELECT 1'
-    `
+export const pingDatabase = () => 'SELECT 1'
+`
+}
+
+export const createRepository = (moduleName: string): boolean => {
+    const repositoryText = repositoryTextGenerator(moduleName)
+    const queryText = queryTextGenerator()
+
+    const repositoryFilePath = getFilePath(moduleName, FileNames.REPOSITORY)
+    const queryFilePath = getFilePath(moduleName, FileNames.QUERY)
+    try {
+        fs.writeFileSync(repositoryFilePath, repositoryText)
+        fs.writeFileSync(queryFilePath, queryText)
+        return true
+    } catch {
+        return false
+    }
 }
